@@ -27,9 +27,10 @@
  *-------------------------------------------------------------------------------------------------------------------
  *
  *
- *  Last Update: 20/06/2019
+ *  Last Update: 25/07/2019
  *
  *
+ *  V1.1.1 - Changed 'Cree A19' timing & Changed name to: 'Device Reset Tool'
  *  V1.1.0 - Cleaned up code and added a Button trigger also changed custom input timing to milliseconds
  *  V1.0.0 - POC
  */
@@ -37,7 +38,7 @@
 
 
 definition(
-    name: "Bulb Reset Tool",
+    name: "Device Reset Tool",
     namespace: "Cobra",
     author: "Andrew Parker",
     description: "Toggles a light or switch in a sequence to reset it.",
@@ -159,7 +160,7 @@ def logSwitch(evt){LOGDEBUG("logswitch: $evt.value")}
     state.deviceMap1 << [start:'off', on:500, off:500,freq:2]
     break;   
     case "Cree A19":      
-    state.deviceMap1 << [start:'off', on:1000, off:1000,freq:4]   
+    state.deviceMap1 << [start:'off', on:3000, off:3000,freq:5]   
     break;
     case "Ikea Tradfri":     
     state.deviceMap1 << [start:'on', on:500, off:1000,freq:6]    
@@ -357,7 +358,7 @@ def setDefaults(){
     LOGDEBUG("Initialising defaults...")   
 }
 def setVersion(){
-		state.version = "1.1.0"	 
+		state.version = "1.1.1"	 
 		state.InternalName = "DeviceResetTool" 
     	state.ExternalName = "Bulb Reset"
 		state.preCheckMessage = " This app is designed to toggle a device a number of times to reset it.<br><br> First, you need to create a virtual switch and set 'Enable auto off' for 1 second <br> Use that virtual switch as a 'trigger switch'<br><br> Then, select the device type and the outlet or switch that the device is connected to<br> By turning on the trigger switch, the app will toggle the outlet or switch using the correct sequence to reset the device"
